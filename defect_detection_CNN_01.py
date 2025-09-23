@@ -54,7 +54,7 @@ val_ds   = make_ds(ds_val)
 test_ds  = make_ds(ds_test)
 
 # ------------------------------------------------------------
-# 3. 顯示部分影像（建立直觀感受）
+# 3. 顯示部分影像
 # ------------------------------------------------------------
 plt.figure(figsize=(10, 3))
 for images, labels in train_ds.take(1):
@@ -133,3 +133,4 @@ for images, labels in test_ds.take(1):
     plt.suptitle("Prediction vs Ground Truth (Beans)", fontsize=14)
     plt.tight_layout()
     plt.show()
+
