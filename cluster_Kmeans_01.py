@@ -1,4 +1,8 @@
-# 如果還沒安裝 scikit‑learn，先安裝（Colab 可直接執行）
+# ============================================
+#  Cluster_Kmeans
+#  目標 : 使學員了解K Means 分群法以及圖形繪製概念
+#  作者：國立雲林科技大學 林家仁
+# ============================================
 # !pip install scikit-learn -q
 
 import numpy as np
@@ -35,3 +39,4 @@ plt.xlabel("Time")
 plt.ylabel("Cost")
 plt.grid(True, linestyle="--", alpha=0.4)
 plt.show()
+
