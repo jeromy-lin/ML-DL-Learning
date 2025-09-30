@@ -22,7 +22,7 @@ warnings.filterwarnings('ignore')  # 避免 Colab 顯示 DeprecationWarning
 import gymnasium as gym  # Gymnasium 環境
 import numpy as np
 from stable_baselines3 import DDPG  # DDPG 演算法
-from stable_baselines3.common.noise import NormalActionNoise  # 探索噪聲
+from stable_baselines3.common.noise import NormalActionNoise  # 探索雜訊
 from gymnasium.wrappers import RecordVideo  # 環境錄影
 import glob
 from IPython.display import HTML  # Colab 播放影片
@@ -44,14 +44,14 @@ n_actions = env.action_space.shape[0]  # 取得動作維度 (Pendulum: 1 維)
 action_noise = NormalActionNoise(
     mean=np.zeros(n_actions), sigma=0.1*np.ones(n_actions)
 )  
-# NormalActionNoise: 高斯噪聲，用於探索
+# NormalActionNoise: 高斯雜訊，用於探索
 # mean: 平均值 0，sigma: 標準差 0.1
 
 # 建立 DDPG agent
 model = DDPG(
     "MlpPolicy",  # 使用多層感知器策略 (MLP)
     env,          # 環境
-    action_noise=action_noise,  # 加入探索噪聲
+    action_noise=action_noise,  # 加入探索雜訊
     verbose=1     # 顯示訓練進度
 )
 
@@ -99,3 +99,4 @@ if video_files:
     data_url = "data:video/mp4;base64," + b64encode(mp4_).decode()
     # 在 Colab Notebook 中播放影片
     HTML(f'<video width=400 controls><source src="{data_url}" type="video/mp4"></video>')
+
