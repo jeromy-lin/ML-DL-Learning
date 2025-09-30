@@ -37,7 +37,7 @@ cost_time = np.vstack([obj1, obj2]).T
 pareto_mask = is_pareto_efficient(cost_time)
 pareto_points = cost_time[pareto_mask]
 
-# 選擇權重 (自己調整偏好)
+# 選擇權重 (可自行調整偏好)
 w1, w2 = 0.6, 0.4
 weighted_obj = w1 * obj1 + w2 * obj2
 
@@ -59,3 +59,4 @@ plt.show()
 
 print(f"Best compromise solution at: Cost={best_point[0]:.3f}, Time={best_point[1]:.3f}")
 print(f"Corresponding inputs: x1={x1[best_idx]:.3f}, x2={x2[best_idx]:.3f}")
+
