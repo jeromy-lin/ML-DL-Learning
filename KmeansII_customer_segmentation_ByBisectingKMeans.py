@@ -24,19 +24,16 @@ import matplotlib.pyplot as plt
 from sklearn.datasets import make_blobs
 from sklearn.cluster import KMeans
 
-# ⚠️ BisectingKMeans 可能版本不支援，這裡先做安全處理
+# BisectingKMeans 若版本不支援，則跳出例外資訊
 try:
     from sklearn.cluster import BisectingKMeans
     has_bisect = True
 except:
     has_bisect = False
     print("BisectingKMeans not supported in this sklearn version")
-
-
 # ============================================================
 # 建立商業意義資料
 # ============================================================
-
 X, _ = make_blobs(
     n_samples=3000,
     centers=[
@@ -47,15 +44,12 @@ X, _ = make_blobs(
     cluster_std=0.8,
     random_state=42
 )
-
 spending = X[:, 0]
 frequency = X[:, 1]
-
 
 # ============================================================
 # 視覺化原始資料
 # ============================================================
-
 plt.figure(figsize=(6, 5))
 plt.scatter(spending, frequency, s=8)
 plt.xlabel("Annual Spending (K NTD)")
@@ -63,17 +57,10 @@ plt.ylabel("Purchase Frequency (times/year)")
 plt.title("Customer Data (Before Clustering)")
 plt.show()
 
-
 # ============================================================
-# 設定分群目標
+# K-Means 設定分群目標
 # ============================================================
-
 n_clusters = 4
-
-
-# ============================================================
-# K-Means
-# ============================================================
 
 kmeans = KMeans(
     n_clusters=n_clusters,
@@ -84,9 +71,8 @@ kmeans = KMeans(
 kmeans_labels = kmeans.fit_predict(X)
 kmeans_centers = kmeans.cluster_centers_
 
-
 # ============================================================
-# Bisecting K-Means（如果支援）
+# Bisecting K-Means
 # ============================================================
 
 if has_bisect:
@@ -100,10 +86,7 @@ if has_bisect:
     bisect_centers = bisect.cluster_centers_
 
 
-# ============================================================
 # 視覺化比較
-# ============================================================
-
 fig, axs = plt.subplots(1, 2 if has_bisect else 1, figsize=(13, 5))
 
 # ----------------------------
